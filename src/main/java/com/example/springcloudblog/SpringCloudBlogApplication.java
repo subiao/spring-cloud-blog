@@ -1,13 +1,13 @@
-package com.example.springclouddubboconsumer;
+package com.example.springcloudblog;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringCloudDubboConsumerApplication {
+public class SpringCloudBlogApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringCloudDubboConsumerApplication.class, args);
+        SpringApplication.run(SpringCloudBlogApplication.class, args);
     }
 
 }
