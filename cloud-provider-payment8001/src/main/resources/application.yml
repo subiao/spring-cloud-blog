@@ -10,6 +10,15 @@ spring:
     url: jdbc:mysql://localhost:3306/springcloud?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=GMT%2B8
     username: root
     password: 123qwe
+
+eureka:
+  client:
+    # 注册自己
+    register-with-eureka: true
+    # 是否从注册中心抓取服务信息 用于负载均衡
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:7001/eureka
 mybatis:
   type-aliases-package: com.sub.entity
   mapper-locations: classpath:mapper/*.xml
