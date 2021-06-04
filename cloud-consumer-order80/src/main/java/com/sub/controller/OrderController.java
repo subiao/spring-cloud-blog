@@ -2,6 +2,7 @@ package com.sub.controller;
 
 import com.sub.entity.CommonResult;
 import com.sub.entity.Payment;
+import com.sub.service.PaymentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
@@ -15,22 +16,22 @@ import javax.annotation.Resource;
  */
 @RestController
 @Slf4j
+@RequestMapping("consumer")
 public class OrderController {
 
-    public  static final String  PAYMENT_URL="http://CLOUD-PAYMENT-SERVICE";
     @Resource
-    RestTemplate restTemplate;
+    PaymentService paymentService;
 
 
-    @PostMapping(value = "/consumer/payment/create")
+    @PostMapping(value = "/payment/create")
     public CommonResult create(@RequestBody Payment payment) {
-        return  restTemplate.postForObject(PAYMENT_URL+"/payment/create",payment,CommonResult.class);
+        return paymentService.create(payment);
     }
 
 
-    @GetMapping(value = "/consumer/payment/get/{id}")
+    @GetMapping(value = "/payment/get/{id}")
     public CommonResult getPaymentById(@PathVariable("id") Long id) {
-        return  restTemplate.getForObject(PAYMENT_URL+"/payment/get/"+id,CommonResult.class);
+        return  paymentService.getPaymentById(id);
     }
 
 }
