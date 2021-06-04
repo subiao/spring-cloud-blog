@@ -15,15 +15,12 @@ import org.springframework.web.bind.annotation.RequestBody;
  * @Version 1.0
  */
 @Component
-@FeignClient(value="http://CLOUD-PAYMENT-SERVICE")
-public interface PaymentService {
-    @PostMapping(value = "/payment/create")
-    public CommonResult create(@RequestBody Payment payment);
+@FeignClient(value="cloud-hsytrix-payment",fallback = ErrorService.class)
+public interface HsytrixPaymentService {
 
+    @GetMapping(value = "hsytrix/success/{id}")
+    public String success(@PathVariable("id") Integer id);
 
-    @GetMapping(value = "/payment/get/{id}")
-    public CommonResult getPaymentById(@PathVariable("id") Long id);
-
-    @GetMapping(value = "feginTimeOut")
-    public String paymentFeignTimeOut();
+    @GetMapping(value = "hsytrix/failure/{id}")
+    public String failure(@PathVariable("id") Integer id);
 }
