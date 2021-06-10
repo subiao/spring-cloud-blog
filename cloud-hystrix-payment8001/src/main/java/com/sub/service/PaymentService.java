@@ -26,7 +26,7 @@ public class PaymentService {
 //    })
 //    @HystrixCommand
     @HystrixCommand(fallbackMethod = "timeoutHandler",commandProperties = {
-//            @HystrixProperty(name = "circuitBreaker.enable",value = "true"),//是否启用断路器
+            @HystrixProperty(name = "circuitBreaker.enable",value = "true"),//是否启用断路器
             @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold",value = "10"),//请求次数
             @HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds",value = "10000"),//时间窗口期
             @HystrixProperty(name = "circuitBreaker.errorThresholdPercentage",value = "60")//失败率达到多少后跳闸

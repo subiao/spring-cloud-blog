@@ -1,5 +1,11 @@
 server:
   port: 80
+
+
+spring:
+  application:
+    name: cloud-order-service
+
 eureka:
   client:
     # 注册自己
@@ -13,9 +19,6 @@ eureka:
     instance-id: order80
     prefer-ip-address: true
 
-spring:
-  application:
-    name: cloud-order-service
 logging:
   level:
     com.sub.service.PaymentService: debug

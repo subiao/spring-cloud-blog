@@ -1,0 +1,39 @@
+server:
+  port: 9527
+
+spring:
+  application:
+    name: cloud-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: payment-route            #路由的唯一标志
+#          uri: http://localhost:8001     #匹配后提供的路由地址
+          uri: lb://CLOUD-PAYMENT-SERVICE
+          predicates:
+            - Path=/payment/get/**  #断言路径相匹配的路由
+
+        - id: payment-route2               #路由的唯一标志
+#          uri: http://localhost:8001     #匹配后提供的路由地址
+          uri: lb://CLOUD-PAYMENT-SERVICE
+          predicates:
+            - Path=/payment/create  #断言路径相匹配的路由
+      #动态路由发现 负载均衡+服务名
+      discovery:
+        locator:
+          enabled: true
+
+eureka:
+  client:
+    # 注册自己
+    register-with-eureka: true
+    # 是否从注册中心抓取服务信息 用于负载均衡
+    fetch-registry: true
+    service-url:
+#      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka
+       defaultZone: http://eureka7001.com:7001/eureka
+  instance:
+    instance-id: order80
+    prefer-ip-address: true
+
+
