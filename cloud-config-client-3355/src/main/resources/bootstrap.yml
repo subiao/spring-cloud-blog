@@ -17,4 +17,10 @@ eureka:
 #      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka
        defaultZone: http://eureka7001.com:7001/eureka
 
-
+#暴露监控端点
+management:
+  endpoint:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
