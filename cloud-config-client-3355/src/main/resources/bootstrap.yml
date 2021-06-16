@@ -19,7 +19,6 @@ eureka:
 
 #暴露监控端点
 management:
-  endpoint:
   endpoints:
     web:
       exposure:
