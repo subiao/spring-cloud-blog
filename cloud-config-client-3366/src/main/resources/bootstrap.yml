@@ -1,9 +1,9 @@
 server:
-  port: 3355
+  port: 3366
 
 spring:
   application:
-    name: cloud-config-client
+    name: cloud-config-client3366
   cloud:
     config:
       label: master
@@ -16,7 +16,6 @@ spring:
     port: 5672
     username: guest
     password: guest
-
 eureka:
   client:
     service-url:
