@@ -16,7 +16,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class FallBackController {
     @RequestMapping("/fallback/{id}")
-    @SentinelResource(value = "back", fallback = "back",blockHandler = "block")
+    @SentinelResource(value = "back",
+            fallback = "back",
+            blockHandler = "block",
+            exceptionsToIgnore = {IllegalArgumentException.class}
+    )
     public CommonResult fallback(@PathVariable Long id) {
         if (id == 4) {
             throw new IllegalArgumentException("参数异常");
