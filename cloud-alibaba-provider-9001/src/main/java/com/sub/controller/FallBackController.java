@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class FallBackController {
     @RequestMapping("/fallback/{id}")
-    @SentinelResource(value = "back", fallback = "back")
+    @SentinelResource(value = "back", fallback = "back",blockHandler = "block")
     public CommonResult fallback(@PathVariable Long id) {
         if (id == 4) {
             throw new IllegalArgumentException("参数异常");
@@ -26,9 +26,14 @@ public class FallBackController {
         return new CommonResult(200, "正常降级！");
     }
 
-    public  static CommonResult back(@PathVariable Long id, Throwable e){
+    public   CommonResult back(@PathVariable Long id, Throwable e){
 
         return new CommonResult(200,"降级id"+id+"降级异常类"+e.getMessage());
+    }
+
+    public   CommonResult block(@PathVariable Long id, BlockException e){
+
+        return new CommonResult(200,"降级id"+id+"限流异常类"+e.getMessage());
     }
 
 }
