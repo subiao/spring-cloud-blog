@@ -1,0 +1,21 @@
+server:
+  port: 9001
+
+spring:
+  application:
+    name: cloud-alibaba-provider
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848 #注册nacos地址
+    sentinel:
+      transport:
+        dashboard: localhost:8080 #配置sentinel地址
+        port: 8719
+
+#bus 总线设置
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
